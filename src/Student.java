@@ -76,8 +76,7 @@ public class Student extends Library{
 	
 	public void bookSearch(Connection conn)
 	{
-		
-		super.setData();
+	
 		super.searchBook(conn);
 		super.display(conn);
 		
