@@ -32,7 +32,7 @@ public class Student extends Library{
 		
 		Scanner in=new Scanner(System.in);
 		System.out.print("Enter Book ID:");
-		Student_ID=in.nextInt();
+		Issued_Book_ID=in.nextInt();
 		
 	}
 	
@@ -55,13 +55,15 @@ public class Student extends Library{
 	public int searchStudent(Connection conn)
 	{
 		int i=0;
+		ResultSet rs=null;
 		PreparedStatement p;
 		try {
 			
 			
-			p=conn.prepareStatement("select * from Student_Info where Student_ID="+this.getStudentID());
-			i=p.executeUpdate();
-			
+			p=conn.prepareStatement("select count(*) from Student_Info where Student_ID="+this.getStudentID());
+			rs=p.executeQuery();
+			rs.next();
+			i=rs.getInt(1);
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
